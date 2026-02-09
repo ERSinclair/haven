@@ -6,6 +6,8 @@ Connect with local families who have kids the same age. Build your village, find
 
 Haven is a location-based app designed specifically for homeschooling families to find and connect with each other. Whether you're new to homeschooling, new to an area, or just looking to expand your community, Haven helps you discover families with similar-aged children nearby.
 
+**Development Location:** This desktop folder (`~/Desktop/haven-app`) is the primary development environment for Haven.
+
 ## Tech Stack
 
 - **Frontend:** Next.js 16 + React 19 + Tailwind CSS
