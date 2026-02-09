@@ -22,7 +22,7 @@
 1. Go to https://supabase.com
 2. Create account → New Project
 3. Settings:
-   - Name: `familyfinder` (or final app name)
+   - Name: `haven`
    - Database password: (generate strong, save in password manager)
    - Region: **ap-southeast-2 (Sydney)**
 4. Wait for project to provision (~2 min)

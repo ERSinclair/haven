@@ -1,5 +1,5 @@
 -- =============================================
--- FamilyFinder Database Setup
+-- Haven Database Setup
 -- Run this in Supabase SQL Editor
 -- =============================================
 

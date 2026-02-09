@@ -1,4 +1,4 @@
--- Demo families for FamilyFinder
+-- Demo families for Haven
 -- Run this in Supabase SQL Editor
 
 -- Note: These are fake profiles for testing, not real auth users
