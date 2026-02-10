@@ -204,43 +204,33 @@ export default function SignupPage() {
 
       // Handle account creation errors  
       if (!authRes.ok) {
-        console.log('Account creation failed:', authRes.status, authData);
+        console.log('🚨 Account creation failed:', authRes.status, authData);
         
-        // Convert all error content to lowercase string for checking
-        const errorText = JSON.stringify(authData).toLowerCase();
-        console.log('Error text for analysis:', errorText);
+        // Get the actual error message from Supabase
+        const supabaseError = authData.error_description || 
+                             authData.error?.message || 
+                             authData.msg || 
+                             authData.message ||
+                             authData.error ||
+                             'Account creation failed. Please try again.';
         
-        // Check if user already exists (comprehensive check)
-        const isUserExists = authRes.status === 422 || // Unprocessable Entity
-                            authData.error_code === 'user_already_exists' || 
-                            authData.code === 'user_already_exists' ||
-                            errorText.includes('already') ||
-                            errorText.includes('exist') ||
-                            errorText.includes('duplicate') ||
-                            errorText.includes('taken') ||
-                            errorText.includes('registered') ||
-                            authData.msg?.includes('User already registered') ||
-                            authData.message?.includes('User already registered') ||
-                            authData.error_description?.includes('User already registered');
+        console.log('📋 Supabase error message:', supabaseError);
         
-        if (isUserExists) {
-          console.log('✅ Email already has an account - showing conflict dialog');
+        // Only show email conflict dialog for very specific "user already exists" cases
+        if (supabaseError.toLowerCase().includes('user already registered') || 
+            authData.error_code === 'user_already_exists' ||
+            authRes.status === 422) {
+          console.log('✅ Detected user already exists - showing conflict dialog');
           setShowEmailConflict(true);
           setError('');
-          setLoading(false);
-          return;
         } else {
-          // Other signup error (not user exists)
-          console.log('❌ Non-duplicate signup error:', authData);
-          const errorMessage = authData.error_description || 
-                              authData.error?.message || 
-                              authData.msg || 
-                              authData.message || 
-                              'Account creation failed. Please try again.';
-          setError(errorMessage);
-          setLoading(false);
-          return;
+          // For all other errors (rate limits, etc.), show the actual Supabase message
+          console.log('⚠️ Other signup error, showing actual message:', supabaseError);
+          setError(supabaseError);
         }
+        
+        setLoading(false);
+        return;
       }
 
       if (!authData.user) {
