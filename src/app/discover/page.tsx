@@ -67,20 +67,20 @@ export default function EnhancedDiscoverPage() {
       // Only run on client side
       if (typeof window === 'undefined') return;
       
-      console.log('Enhanced Discover: Loading data...');
+      // Load user session and data
       try {
         // Get session from localStorage (bypass SDK)
         const session = getStoredSession();
-        console.log('Enhanced Discover: Session:', session ? 'found' : 'not found');
+        // Check if user is authenticated
         
         if (!session?.user) {
-          console.log('Enhanced Discover: No user, redirecting to login');
+          // No user session, redirect to login
           router.push('/login');
           return;
         }
         
         setUser(session.user);
-        console.log('Enhanced Discover: User set, fetching profile...');
+        // User found, fetch profile data
         
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
         const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

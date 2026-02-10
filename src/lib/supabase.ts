@@ -5,28 +5,29 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Type definitions for our database
+// Type definitions for Sydney database schema
 export type Profile = {
   id: string
   created_at: string
   updated_at: string
-  name: string
+  family_name: string
+  display_name?: string
   email?: string
-  phone?: string
   avatar_url?: string
-  location_name: string
-  location_lat?: number
-  location_lng?: number
-  location_precision: 'suburb' | 'approximate' | 'hidden'
-  kids_ages: number[]
-  status: 'considering' | 'new' | 'experienced' | 'connecting'
-  bio?: string
+  suburb?: string
+  state?: string
+  country: string
+  latitude?: number
+  longitude?: number
   interests: string[]
-  homeschool_approach?: string
-  contact_methods: string[]
-  notifications_enabled: boolean
+  homeschool_style?: string
+  looking_for: string[]
+  show_on_map: boolean
+  show_suburb: boolean
+  allow_messages: boolean
   is_verified: boolean
-  is_banned: boolean
+  is_active: boolean
+  last_seen_at: string
 }
 
 export type Conversation = {

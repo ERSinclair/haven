@@ -48,4 +48,4 @@ npm run dev
 
 ## Database
 
-Database schemas are in the `/database/` folder. The app connects to Supabase project: `lpatbzdghfrghzximywg`
+Database schemas are in the `/database/` folder. The app connects to Supabase project: `aqghkzixmedgoydgzhzu` (Sydney region)

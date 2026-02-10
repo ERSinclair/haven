@@ -123,7 +123,7 @@ export default function SignupPage() {
 
   // Step 1: Simple validation only (no email checking to avoid temp account issues)
   const handleValidateCredentials = () => {
-    console.log('Step 1 validation - simple only');
+    // Simple validation for step 1
     setError('');
     setLoading(true);
 
@@ -166,7 +166,7 @@ export default function SignupPage() {
       }
 
       // Step 1: Create the user account (with retry for reliability)
-      console.log('Creating account for email:', email);
+      // Create account with Supabase
       
       let authRes: Response | null = null;
       let authData: any = null;
@@ -187,7 +187,7 @@ export default function SignupPage() {
           authData = await authRes.json();
           break; // Success, exit retry loop
         } catch (fetchError) {
-          console.log(`Signup attempt ${retryCount + 1} failed:`, fetchError);
+          // Retry failed, will try again
           retryCount++;
           if (retryCount > maxRetries) {
             throw fetchError;
@@ -200,12 +200,8 @@ export default function SignupPage() {
         throw new Error('Failed to create account. Please try again.');
       }
 
-      console.log('Account creation response:', authRes.status, authData);
-
       // Handle account creation errors  
       if (!authRes.ok) {
-        console.log('🚨 Account creation failed:', authRes.status, authData);
-        
         // Get the actual error message from Supabase
         const supabaseError = authData.error_description || 
                              authData.error?.message || 
@@ -214,18 +210,14 @@ export default function SignupPage() {
                              authData.error ||
                              'Account creation failed. Please try again.';
         
-        console.log('📋 Supabase error message:', supabaseError);
-        
         // Only show email conflict dialog for very specific "user already exists" cases
         if (supabaseError.toLowerCase().includes('user already registered') || 
             authData.error_code === 'user_already_exists' ||
             authRes.status === 422) {
-          console.log('✅ Detected user already exists - showing conflict dialog');
           setShowEmailConflict(true);
           setError('');
         } else {
           // For all other errors (rate limits, etc.), show the actual Supabase message
-          console.log('⚠️ Other signup error, showing actual message:', supabaseError);
           setError(supabaseError);
         }
         
@@ -330,7 +322,7 @@ export default function SignupPage() {
           ) : (
             <button 
               onClick={() => {
-                console.log('Back button clicked, current step:', step, 'going to:', step - 1);
+                // Navigate to previous step
                 setStep(step - 1);
               }} 
               className="text-gray-400 hover:text-gray-600"
