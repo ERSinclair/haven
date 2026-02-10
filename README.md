@@ -8,6 +8,8 @@ Haven is a location-based app designed specifically for homeschooling families t
 
 **Development Location:** This desktop folder (`~/Desktop/haven-app`) is the primary development environment for Haven.
 
+🚀 **Auto-Deploy Test:** GitHub → Vercel pipeline connected!
+
 ## Tech Stack
 
 - **Frontend:** Next.js 16 + React 19 + Tailwind CSS
