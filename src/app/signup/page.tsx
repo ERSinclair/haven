@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 // SimpleLocationPicker removed - using simple town/state inputs
 
-const STORAGE_KEY = 'sb-lpatbzdghfrghzximywg-auth-token';
+const STORAGE_KEY = 'sb-aqghkzixmedgoydgzhzu-auth-token';
 
 export default function SignupPage() {
   const [step, setStep] = useState(1);
@@ -43,8 +43,8 @@ export default function SignupPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://lpatbzdghfrghzximywg.supabase.co';
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwYXRiemRnaGZyZ2h6eGlteXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTA1MTksImV4cCI6MjA4NjAyNjUxOX0.HYgJJZuBaG0fXy-8JesatvWIB3YtPKwMILvYRlhh1s0';
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://aqghkzixmedgoydgzhzu.supabase.co';
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_YzzytQKVUVjimBU_s_n5NA_6JNzybT3';
 
   // Load saved email on component mount
   useEffect(() => {
@@ -244,9 +244,12 @@ export default function SignupPage() {
         user: authData.user,
       }));
 
-      // Step 2: Save the profile
+      // Step 2: Create the profile (INSERT since no auto-trigger)
       const profileData = {
-        name,
+        id: authData.user.id,  // Add user ID for INSERT
+        family_name: name,     // Use name as family_name  
+        display_name: name,    // Also set display_name
+        email,
         username,
         location_name: location.trim(),
         location_lat: null, // Not using exact coordinates for profiles
@@ -254,14 +257,14 @@ export default function SignupPage() {
         kids_ages: kidsAges,
         status: status.length > 0 ? status[0] : 'connecting',
         contact_methods: contactMethods,
-        email,
+        created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       };
 
       const profileRes = await fetch(
-        `${supabaseUrl}/rest/v1/profiles?id=eq.${authData.user.id}`,
+        `${supabaseUrl}/rest/v1/profiles`,
         {
-          method: 'PATCH',
+          method: 'POST',  // Changed from PATCH to POST (INSERT)
           headers: {
             'apikey': supabaseKey,
             'Authorization': `Bearer ${authData.access_token}`,

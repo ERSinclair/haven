@@ -10,7 +10,7 @@ function ResumeSignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-const STORAGE_KEY = 'sb-lpatbzdghfrghzximywg-auth-token';
+const STORAGE_KEY = 'sb-aqghkzixmedgoydgzhzu-auth-token';
 
   const [step, setStep] = useState(2);
   const [loading, setLoading] = useState(true);
@@ -31,8 +31,8 @@ const STORAGE_KEY = 'sb-lpatbzdghfrghzximywg-auth-token';
   const [userId, setUserId] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://lpatbzdghfrghzximywg.supabase.co';
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwYXRiemRnaGZyZ2h6eGlteXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTA1MTksImV4cCI6MjA4NjAyNjUxOX0.HYgJJZuBaG0fXy-8JesatvWIB3YtPKwMILvYRlhh1s0';
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://aqghkzixmedgoydgzhzu.supabase.co';
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_YzzytQKVUVjimBU_s_n5NA_6JNzybT3';
 
   useEffect(() => {
     const loadProfile = async () => {

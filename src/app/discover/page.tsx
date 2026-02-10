@@ -307,8 +307,8 @@ export default function EnhancedDiscoverPage() {
         return false;
       }
 
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://lpatbzdghfrghzximywg.supabase.co';
-      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwYXRiemRnaGZyZ2h6eGlteXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTA1MTksImV4cCI6MjA4NjAyNjUxOX0.HYgJJZuBaG0fXy-8JesatvWIB3YtPKwMILvYRlhh1s0';
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://aqghkzixmedgoydgzhzu.supabase.co';
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_YzzytQKVUVjimBU_s_n5NA_6JNzybT3';
 
       console.log('Attempting to send message from', user.id, 'to', recipientId);
 

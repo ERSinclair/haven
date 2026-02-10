@@ -69,7 +69,7 @@ export default function LoginPage() {
       }
 
       // Store session manually in localStorage (bypassing SDK)
-      const storageKey = `sb-lpatbzdghfrghzximywg-auth-token`;
+      const storageKey = `sb-aqghkzixmedgoydgzhzu-auth-token`;
       localStorage.setItem(storageKey, JSON.stringify({
         access_token: result.access_token,
         refresh_token: result.refresh_token,

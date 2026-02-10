@@ -1,6 +1,6 @@
 // Bypass Supabase SDK for auth - read directly from localStorage
 
-const STORAGE_KEY = 'sb-lpatbzdghfrghzximywg-auth-token';
+const STORAGE_KEY = 'sb-aqghkzixmedgoydgzhzu-auth-token';
 
 export type StoredSession = {
   access_token: string;
